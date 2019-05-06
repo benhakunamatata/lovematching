@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Picture</title>
+  <% include ../partials/header.ejs %>
+</head>
+
+<body>
+
+  <% include ../partials/navuser.ejs %>
+
+<div class="divcenter">
+<div>
+  <img class="object-fit_fill" src="/upload/<%= imageUrl %>" width="207" height="227" />
+</div>
+<div>
+<p>Select a Picture to upload: <p>
+<form id="uploadForm" enctype="multipart/form-data" method="post">
+  <label class="btn btn-default">
+    Browse <input type="file" name="userFile" hidden>
+ </label>
+  <input type="submit" class="btn btn-info" value="Upload File" name="submit">
+</form>
+</div>
+</div>
+</body>
+</html>

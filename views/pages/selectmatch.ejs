@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+
+  <script>
+    $(document).ready(function(){
+      $("#mySelectForm").submit(function(event){
+        event.preventDefault(); //prevent default action
+        var post_url = $(this).attr("action"); //get form action url
+        var form_data = $(this).serialize(); //Encode form elements for submission
+
+        $.post( post_url, form_data, function( response ) {
+          // console.log('client response!');
+          // console.log(response);
+          $("#server-results").html( response.message );
+        });
+      });
+    });
+  </script>
+</head>
+
+<body>
+
+  <% include ../partials/navuser.ejs %>
+  <h3>Select Your Match</h3>
+
+
+  <FORM name="mySelectForm" id="mySelectForm" METHOD="POST" ACTION="/selectmatch">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Choice</th>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Image</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% results.forEach(function(r) { %>
+            <tr>
+              <td><input type="checkbox" name="choices" value="<%= r.userid %>" <%= r.checked %> > </td>
+              <td><%= r.userid %></td>
+              <td><%= r.firstname %></td>
+              <td>
+                <div>
+                  <img class="object-fit_fill" src="upload/<%= r.image %>" />
+                </div>
+            </td>
+            </tr>
+          <% }); %>
+
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <p><div id="server-results"><!-- For server results --></div></p>
+  	<P>
+  		<INPUT TYPE="submit" class="btn btn-info" VALUE="Submit" NAME="B1">
+  	</P>
+    <br><br>
+
+  </FORM>
+
+</body>
+</html>

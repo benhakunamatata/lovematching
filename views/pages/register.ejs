@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+
+<script>
+  function validateForm() {
+      var email = document.forms["myRegisterForm"]["email"].value;
+      var password = document.forms["myRegisterForm"]["password"].value;
+      if (email.trim() == "") {
+          alert("Email must be filled out");
+          return false;
+      }
+      if (password.trim() == "") {
+          alert("Password must be filled out");
+          return false;
+      }
+  }
+
+  $(document).ready(function(){
+    $("#myRegisterForm").submit(function(event){
+      event.preventDefault(); //prevent default action
+      var post_url = $(this).attr("action"); //get form action url
+      var form_data = $(this).serialize(); //Encode form elements for submission
+
+      $.post( post_url, form_data, function( response ) {
+        // console.log('client response!');
+        // console.log(response);
+        $("#server-results").html( response.message );
+      });
+    });
+  });
+</script>
+
+</head>
+
+<body>
+
+  <% include ../partials/nav.ejs %>
+
+  <div class = "divcenter">
+  <div>
+    <img height="50" src="https://d3rmeear8e0ybo.cloudfront.net/app/images/logo/2rb_logo_cn.png" />
+  </div>
+  <br>
+  <div><b>全球高素质华人婚恋交友</b></div>
+  <div id="register">
+    <br><br>
+  <form name="myRegisterForm" id="myRegisterForm" action="/register" onsubmit="return validateForm()" method="post">
+          <input type="email" id="email" name="email" autocorrect="off" autocapitalize="off" placeholder="Enter your email address" />
+      <br><br>
+          <input type="password" id="password" name="password" placeholder="Enter your Password" />
+      <br><br>
+      <input type="firstname" id="firstname" name="firstname" autocorrect="off" autocapitalize="off" placeholder="Enter your First Name" />
+      <br><br>
+      <input type="userid" id="userid" name="userid" autocorrect="off" autocapitalize="off" placeholder="Enter your ID Number" />
+      <br><br>
+  <div><input type="radio" name="gender" value="female"> Female <input type="radio" name="gender" value="male"> Male</div>
+
+      <br><br>
+          <input class="btn btn-info" type="submit" value="Register" />
+          <br><br>
+          <div id="server-results"><!-- For server results --></div>
+  </form>
+  </div>
+  </div>
+
+
+
+</body>
+</html>

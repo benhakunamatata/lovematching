@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Personal Information</title>
+  <% include ../../partials/header.ejs %>
+
+</head>
+
+<body>
+  <% include ../../partials/navadmin.ejs %>
+
+<h1>View Users</h1>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>AutoId</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% results.forEach(function(r) { %>
+        <tr>
+          <td><%= r.userid %></td>
+          <td><%= r.firstname %></td>
+          <td><%= r.lastname %></td>
+          <td><%= r.email %></td>
+          <td><%= r.phonenumber %></td>
+          <td><a href="/admin/manageinfo?uid=<%= r.uid %>"><%= r.uid %></a></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+</body>
+</html>

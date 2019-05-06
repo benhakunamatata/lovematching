@@ -1,0 +1,65 @@
+label {display:block; text-align:right;}
+.divcenter {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  text-align: center;
+}
+.cover {
+  width: 260px;
+  object-fit: cover;
+}
+.object-fit_fill {
+  -o-object-fit: fill;
+     object-fit: fill;
+     width: 207px;
+     height: 227px;
+}
+.div-table {
+  display: table;
+  width: auto;
+  background-color: #eee;
+  border: 1px solid #666666;
+  border-spacing: 5px; /* cellspacing:poor IE support for  this */
+}
+.div-table-row {
+  display: table-row;
+  width: auto;
+  clear: both;
+}
+.imgcontainer {
+  width: "207";
+  height: "227";
+}
+.div-table-col {
+  float: left; /* fix for  buggy browsers */
+  display: table-column;
+  width: 200px;
+  background-color: #ccc;
+}
+.jumbotron {
+  background: #532F8C;
+  color: white;
+  padding-bottom: 80px; }
+  .jumbotron .btn-primary {
+    background: #845ac7;
+    border-color: #845ac7; }
+    .jumbotron .btn-primary:hover {
+      background: #7646c1; }
+  .jumbotron p {
+    color: #d9ccee;
+    max-width: 75%;
+    margin: 1em auto 2em; }
+  .navbar + .jumbotron {
+    margin-top: -20px; }
+  .jumbotron .lang-logo {
+    display: block;
+    background: #B01302;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    border: 2px solid white; }
+    .jumbotron .lang-logo img {
+      max-width: 100%; }

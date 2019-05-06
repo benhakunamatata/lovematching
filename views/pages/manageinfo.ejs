@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Personal Information</title>
+  <% include ../partials/header.ejs %>
+  <script>
+  function validateForm() {
+      var email = document.forms["myManageForm"]["email"].value;
+      var firstname = document.forms["myManageForm"]["firstname"].value;
+      if (firstname.trim() == "") {
+          alert("First Name must be filled out");
+          return false;
+      }
+      if (email.trim() == "") {
+          alert("Email must be filled out");
+          return false;
+      }
+  }
+
+$(document).ready(function(){
+  $("#myManageForm").submit(function(event){
+    event.preventDefault(); //prevent default action
+    var post_url = $(this).attr("action"); //get form action url
+    var form_data = $(this).serialize(); //Encode form elements for submission
+
+    $.post( post_url, form_data, function( response ) {
+      $("#server-results").html( response );
+    });
+  });
+});
+  </script>
+</head>
+
+<body>
+
+  <% include ../partials/navadmin.ejs %>
+
+<div id="info" class="divcenter">
+<h1>Personal Information</h1>
+<form name="myManageForm" id="myManageForm" action="/admin/manageinfo" onsubmit="return validateForm()" method="post">
+
+  <table class="table">
+    <tbody>
+      <tr>
+        <td><label for="activity">Activity(* required):</label></td>
+        <td><input type="text" id="activity" name="activity" placeholder="Enter your Activity Name" /></td>
+      </tr>
+      <tr>
+  <td><label for="userid">Id(* required):</label></td>
+  <td><input type="text" id="userid" name="userid" placeholder="Enter your ID Number" /></td>
+  </tr>
+  <tr>
+        <td><label for="firstname">First Name(* required):</label></td>
+        <td><input type="text" id="firstname" name="firstname" placeholder="Enter your First name" /></td>
+        </tr>
+        <tr>
+    <td><label for="lastname">Last Name:</label></td>
+    <td><input type="text" id="lastname" name="lastname" placeholder="Enter your Last Name" /></td>
+    </tr>
+    <tr>
+        <td><label for="email">Email(* required):</label></td>
+        <td><input type="email" id="email" name="email" placeholder="Enter your email address" /></td>
+        </tr>
+    <tr>
+        <td><label for="gender">Gender:</label></td>
+        <td><select name="gender" id="gender">
+        <option>
+          female
+        </option>
+        <option selected>
+          male
+        </option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+        <td><label for="profile">RedBean Email or Profile:</label></td>
+        <td><input type="text" id="profile" name="profile" placeholder="Enter your RedBean Email or Profile" /></td>
+    </tr>
+    <tr>
+        <td><label for="phonenumber">Phone Number:</label></td>
+        <td><input type="text" id="phonenumber" name="phonenumber" placeholder="Enter your Phone Number" /></td>
+    </tr>
+    <tr>
+        <td><label for="wechatid">Wechat Id:</label></td>
+        <td><input type="text" id="wechatid" name="wechatid" placeholder="Enter your Wechat Id" /></td>
+    </tr>
+    </tbody>
+  </table>
+        <input type="submit" class="btn btn-primary" value="Save" />
+        <div id="server-results"><!-- For server results --></div>
+</form>
+</div>
+</body>
+</html>
