@@ -1,7 +1,7 @@
 {
-  "name": "redbeans",
+  "name": "lovematching",
   "version": "1.0.0",
-  "description": "readbeans matching",
+  "description": "love mate matching",
   "engines": {
     "node": "6.11.1"
   },
